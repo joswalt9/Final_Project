@@ -24,7 +24,7 @@ def on_exit():
     save_inventory(inventory)
     root.destroy()
 
-# Function to delete a vehicle from inventory !!!!!!FIX THIS!!!!!!!
+# Function to delete a vehicle from inventory
 def delete_vehicle(index, view_window):
     del inventory[index] # Delete Vehicle
     save_inventory(inventory) # Save inventory
@@ -92,7 +92,7 @@ def view_inventory_window(inventory):
         image_label = tk.Label(view_window, image=view_vehicle_image)
         image_label.pack()
     except tk.TclError:
-        tk.Label(view_window, text="View Inventory").pack()
+        tk.Label(view_window, text="View Inventory").pack() # Display alternate text if view.png fails to load.
 
 
     # Check if inventory is empty
@@ -129,7 +129,7 @@ def add_vehicle_window():
         image_label = tk.Label(add_window, image=add_vehicle_image)
         image_label.grid(row=0, column=0, columnspan=2)
     except:
-        tk.Label(add_window, text="Add Vehicle").grid(row=0, column=0, columnspan=2)
+        tk.Label(add_window, text="Add Vehicle").grid(row=0, column=0, columnspan=2) # Display alternate text if add.png fails to load.
 
     # Labels and entry fields for data input
     tk.Label(add_window, text="Year:").grid(row=1, column=0)
@@ -163,7 +163,7 @@ try:
     label = ttk.Label(image=logo_image)
     label.pack()
 except tk.TclError:
-    ttk.Label(text="Inventory Control").pack()
+    ttk.Label(text="Inventory Control").pack() # Display alternate text if logo.png fails to load.
 
 root.geometry("200x150") # Set window size for main window
 
