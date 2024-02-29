@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import ttk
 import json
@@ -6,15 +7,18 @@ add_vehicle_image = None # Set variable for add.png
 view_vehicle_image = None # Set variable for view.png
 logo_image = None # Set variable for logo.png
 
+# Get the directory where the script resides
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
 # Function to save inventory to a file
 def save_inventory(inventory):
-    with open("inventory.json", "w") as file:
+    with open(os.path.join(script_dir, "inventory.json"), "w") as file:
         json.dump(inventory, file)
 
 # Function to load inventory to a file
 def load_inventory():
     try:
-        with open("inventory.json", "r") as file:
+        with open(os.path.join(script_dir, "inventory.json"), "r") as file:
             return json.load(file)
     except FileNotFoundError:
         return []
@@ -88,7 +92,7 @@ def view_inventory_window(inventory):
 
     # Display view.png
     try:
-        view_vehicle_image = tk.PhotoImage(file="view.png")
+        view_vehicle_image = tk.PhotoImage(file=os.path.join(script_dir, "view.png"))
         image_label = tk.Label(view_window, image=view_vehicle_image)
         image_label.pack()
     except tk.TclError:
@@ -125,7 +129,7 @@ def add_vehicle_window():
 
     # Display add.png
     try:
-        add_vehicle_image = tk.PhotoImage(file="add.png")
+        add_vehicle_image = tk.PhotoImage(file=os.path.join(script_dir, "add.png"))
         image_label = tk.Label(add_window, image=add_vehicle_image)
         image_label.grid(row=0, column=0, columnspan=2)
     except:
@@ -159,7 +163,7 @@ root.title("Inventory Control")
 
 # Display logo.png
 try:
-    logo_image = tk.PhotoImage(file="logo.png")
+    logo_image = tk.PhotoImage(file=os.path.join(script_dir, "logo.png"))
     label = ttk.Label(image=logo_image)
     label.pack()
 except tk.TclError:
