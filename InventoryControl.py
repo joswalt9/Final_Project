@@ -34,7 +34,7 @@ def delete_vehicle(index, view_window):
     save_inventory(inventory) # Save inventory
     view_window.destroy() # Close inventory window
     view_inventory_window(inventory) # Reload inventory window
-    status_label.config(text="Vehicle deleted from inventory.") #Update status label
+    status_label.config(text="Vehicle deleted from inventory.") # Update status label
 
 # Add Vehicle Function
 def add_vehicle(inventory):
