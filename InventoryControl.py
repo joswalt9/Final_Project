@@ -34,7 +34,7 @@ def delete_vehicle(index, view_window):
     save_inventory(inventory) # Save inventory
     view_window.destroy() # Close inventory window
     view_inventory_window(inventory) # Reload inventory window
-    status_label.config(text="Vehicle deleted from inventory.") # Update status label
+    status_label.config(text="Vehicle deleted from inventory.") #Update status label
 
 # Add Vehicle Function
 def add_vehicle(inventory):
@@ -56,7 +56,7 @@ def add_vehicle(inventory):
         if year < 1900 or year > current_year:
             raise ValueError
     except ValueError:
-        status_label.config(text="Please enter a valid year.") # Update status label
+        status_label.config(text="Please enter a valid year. Ex 1900-2024") # Update status label
         return
     
     # Check if mileage is a valid float number
