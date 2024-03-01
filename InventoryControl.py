@@ -158,6 +158,14 @@ def add_vehicle_window():
     # Button to add vehicle and close window
     tk.Button(add_window, text="Add Vehicle", command=lambda: [add_vehicle(inventory), add_window.destroy()]).grid(row=5, column=0, columnspan=2)
 
+    # Limit characters to 20 in Make and Model fields
+    make_entry.config(validate="key", validatecommand=(make_entry.register(validate_make_model), "%P"))
+    model_entry.config(validate="key", validatecommand=(model_entry.register(validate_make_model), "%P"))
+
+# Validation function to limit character length
+def validate_make_model(new_text):
+    return len(new_text) <= 20  # Limiting to 20 characters
+
 # Main Tkinter Window
 root = tk.Tk()
 root.title("Inventory Control")
