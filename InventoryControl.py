@@ -2,6 +2,7 @@ import os
 import tkinter as tk
 from tkinter import ttk
 import json
+import datetime
 
 add_vehicle_image = None # Set variable for add.png
 view_vehicle_image = None # Set variable for view.png
@@ -34,7 +35,7 @@ def delete_vehicle(index, view_window):
     save_inventory(inventory) # Save inventory
     view_window.destroy() # Close inventory window
     view_inventory_window(inventory) # Reload inventory window
-    status_label.config(text="Vehicle deleted from inventory.") #Update status label
+    status_label.config(text="Vehicle deleted from inventory.") # Update status label
 
 # Add Vehicle Function
 def add_vehicle(inventory):
@@ -52,11 +53,13 @@ def add_vehicle(inventory):
     # Check if Year is valid
     try:
         year = int(year)
-        current_year = 2024 
-        if year < 1900 or year > current_year:
+        today = datetime.date.today() # Find current date
+        current_year = today.year # Find current year
+        car_year = current_year + 1 # Add 1 to current year 
+        if year < 1888 or year > car_year:
             raise ValueError
     except ValueError:
-        status_label.config(text="Please enter a valid year. Ex 1900-2024") # Update status label
+        status_label.config(text="Please enter a valid year. Ex 1900-" + str(car_year)) # Update status label
         return
     
     # Check if mileage is a valid float number
@@ -178,7 +181,7 @@ try:
 except tk.TclError:
     ttk.Label(text="Inventory Control").pack() # Display alternate text if logo.png fails to load.
 
-root.geometry("200x150") # Set window size for main window
+root.geometry("210x160") # Set window size for main window
 
 inventory = load_inventory() # Load inventory
 
