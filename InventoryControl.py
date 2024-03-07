@@ -37,19 +37,40 @@ def delete_vehicle(index, view_window):
     view_inventory_window(inventory) # Reload inventory window
     status_label.config(text="Vehicle deleted from inventory.") # Update status label
 
+# Function to check if Stock Number has been used previously
+def is_stock_number_used(stock, inventory):
+    for vehicle in inventory:
+        if vehicle['Stock'] == stock:
+            return True
+    return False
+
+# Function to check if VIN has been used previously
+def is_vin_used(vin, inventory):
+    for vehicle in inventory:
+        if vehicle['VIN'] == vin:
+            return True
+    return False
+
 # Add Vehicle Function
 def add_vehicle(inventory):
     # Get user input
+    stock = stock_entry.get()
     make = make_entry.get()
     model = model_entry.get()
     year = year_entry.get()
     mileage = mileage_entry.get()
+    vin = vin_entry.get()
 
     # Check if fields are empty
-    if not (make and model and year and mileage):
+    if not (stock and make and model and year and mileage and vin):
         status_label.config(text="Please fill in all fields") # Update status label
         return
     
+    # Check if Stock Number has been entered previously
+    if is_stock_number_used(stock, inventory):
+        status_label.config(text=f"Stock # has been used previously") # Update status label
+        return
+
     # Check if Year is valid
     try:
         year = int(year)
@@ -69,12 +90,23 @@ def add_vehicle(inventory):
         status_label.config(text="Please enter a valid mileage.") # Update status label
         return
     
+    # Check if VIN has been entered previously
+    if is_vin_used(vin, inventory):
+        status_label.config(text=f"VIN has been used previously") # Update status label
+        return
+    
+    #Check if VIN number is 16 characters long
+    if len(vin) != 16:
+        status_label.config(text="VIN must be exactly 16 characters long.") # Update status label
+    
     # If checks pass, add vehicle to inventory
     vehicle = {
+        "Stock": stock,
         "Make": make,
         "Model": model,
         "Year": year,
-        "Mileage": mileage
+        "Mileage": mileage,
+        "VIN": vin
     }
 
     inventory.append(vehicle) # Add vehicle to inventory
@@ -113,7 +145,7 @@ def view_inventory_window(inventory):
             frame = tk.Frame(view_window)
             frame.pack(fill="x")
 
-            vehicle_label = tk.Label(frame, text=f"{index}. {vehicle['Year']} {vehicle['Make']} {vehicle['Model']} - Mileage: {vehicle['Mileage']}")
+            vehicle_label = tk.Label(frame, text=f"{vehicle['Stock']}. {vehicle['Year']} {vehicle['Make']} {vehicle['Model']} - Mileage: {vehicle['Mileage']} - VIN: {vehicle['VIN']}")
             vehicle_label.pack(side="left")
             # Add delete button to each entry
             delete_button = tk.Button(frame, text="Delete", command=lambda idx=index-1, window=view_window: delete_vehicle(idx, view_window))
@@ -140,34 +172,47 @@ def add_vehicle_window():
         tk.Label(add_window, text="Add Vehicle").grid(row=0, column=0, columnspan=2) # Display alternate text if add.png fails to load.
 
     # Labels and entry fields for data input
-    tk.Label(add_window, text="Year:").grid(row=1, column=0)
-    tk.Label(add_window, text="Make:").grid(row=2, column=0)
-    tk.Label(add_window, text="Model:").grid(row=3, column=0)
-    tk.Label(add_window, text="Mileage:").grid(row=4, column=0)
+    tk.Label(add_window, text="Stock:").grid(row=1, column=0)
+    tk.Label(add_window, text="Year:").grid(row=2, column=0)
+    tk.Label(add_window, text="Make:").grid(row=3, column=0)
+    tk.Label(add_window, text="Model:").grid(row=4, column=0)
+    tk.Label(add_window, text="Mileage:").grid(row=5, column=0)
+    tk.Label(add_window, text="VIN:").grid(row=6, column=0)
 
     # Entry fields for user input
-    global make_entry, model_entry, year_entry, mileage_entry
+    global stock_entry, make_entry, model_entry, year_entry, mileage_entry, vin_entry
+    stock_entry = tk.Entry(add_window) #Entry field for stock number 
     year_entry = tk.Entry(add_window) #Entry field for year
     make_entry = tk.Entry(add_window) #Entry field for make
     model_entry = tk.Entry(add_window) #Entry field for model
     mileage_entry = tk.Entry(add_window) #Entry field for mileage
+    vin_entry = tk.Entry(add_window) #Entry field for VIN
 
     # Position entry fields in the window
-    year_entry.grid(row=1, column=1)
-    make_entry.grid(row=2, column=1)
-    model_entry.grid(row=3, column=1)
-    mileage_entry.grid(row=4, column=1)
+    stock_entry.grid(row=1, column=1)
+    year_entry.grid(row=2, column=1)
+    make_entry.grid(row=3, column=1)
+    model_entry.grid(row=4, column=1)
+    mileage_entry.grid(row=5, column=1)
+    vin_entry.grid(row=6, column=1)
 
     # Button to add vehicle and close window
-    tk.Button(add_window, text="Add Vehicle", command=lambda: [add_vehicle(inventory), add_window.destroy()]).grid(row=5, column=0, columnspan=2)
+    tk.Button(add_window, text="Add Vehicle", command=lambda: [add_vehicle(inventory), add_window.destroy()]).grid(row=7, column=0, columnspan=2)
 
     # Limit characters to 20 in Make and Model fields
     make_entry.config(validate="key", validatecommand=(make_entry.register(validate_make_model), "%P"))
     model_entry.config(validate="key", validatecommand=(model_entry.register(validate_make_model), "%P"))
 
-# Validation function to limit character length
+    # Limit characters to 16 in VIN field
+    vin_entry.config(validate="key", validatecommand=(vin_entry.register(validate_vin), "%P"))
+
+# Validation function to limit character length in Make and Model fields
 def validate_make_model(new_text):
     return len(new_text) <= 20  # Limiting to 20 characters
+
+# Validation function to limit character length in VIN field
+def validate_vin(new_text):
+    return len(new_text) <= 16 # Limiting to 16 characters
 
 # Main Tkinter Window
 root = tk.Tk()

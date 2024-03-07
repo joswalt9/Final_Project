@@ -7,7 +7,7 @@ Functionality:
 
 1. Adding a vehicle:
     Click on the "Add Vehicle" button to open the "Add Vehicle" window.
-    Enter the details of vehicle including Year, Make, Model, and Mileage.
+    Enter the details of vehicle including Stock Number, Year, Make, Model, Mileage, and VIN
     Click the "Add Vehicle" button to add the vehicle to inventory.
     If any field is left blank or invalid data is entered, an error message will be displayed.
 
