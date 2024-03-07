@@ -16,7 +16,7 @@ def save_inventory(inventory):
     with open(os.path.join(script_dir, "inventory.json"), "w") as file:
         json.dump(inventory, file)
 
-# Function to load inventory to a file
+# Function to load inventory from a file
 def load_inventory():
     try:
         with open(os.path.join(script_dir, "inventory.json"), "r") as file:
@@ -147,8 +147,10 @@ def view_inventory_window(inventory):
             frame = tk.Frame(view_window, bd=1, relief="solid") # Add a border
             frame.pack(fill="x", padx=2, pady=2)
 
+            #Display Entries
             vehicle_label = tk.Label(frame, text=f"{vehicle['Stock']}. {vehicle['Year']} {vehicle['Make']} {vehicle['Model']} - Mileage: {vehicle['Mileage']} - VIN: {vehicle['VIN']}")
             vehicle_label.pack(side="left")
+
             # Add delete button to each entry
             delete_button = tk.Button(frame, text="Delete", command=lambda idx=index-1, window=view_window: delete_vehicle(idx, view_window))
             delete_button.pack(side="right")
