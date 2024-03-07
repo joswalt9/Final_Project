@@ -117,6 +117,9 @@ def add_vehicle(inventory):
 def view_inventory_window(inventory):
     global view_vehicle_image
 
+    # Sort inventory by stock number
+    inventory.sort(key=lambda x: x['Stock'])
+
     # Function to refresh inventory window
     def refresh():
         view_window.destroy()
@@ -134,7 +137,6 @@ def view_inventory_window(inventory):
     except tk.TclError:
         tk.Label(view_window, text="View Inventory").pack() # Display alternate text if view.png fails to load.
 
-
     # Check if inventory is empty
     if not inventory:
         tk.Label(view_window, text="Inventory is empty").pack()
@@ -142,8 +144,8 @@ def view_inventory_window(inventory):
         # Display vehicle inventory
         for index, vehicle in enumerate(inventory, start=1):
             # Create a frame
-            frame = tk.Frame(view_window)
-            frame.pack(fill="x")
+            frame = tk.Frame(view_window, bd=1, relief="solid") # Add a border
+            frame.pack(fill="x", padx=2, pady=2)
 
             vehicle_label = tk.Label(frame, text=f"{vehicle['Stock']}. {vehicle['Year']} {vehicle['Make']} {vehicle['Model']} - Mileage: {vehicle['Mileage']} - VIN: {vehicle['VIN']}")
             vehicle_label.pack(side="left")
