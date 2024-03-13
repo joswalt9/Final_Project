@@ -1,1 +1,202 @@
-[{"Stock": "38002", "Make": "Toyota", "Model": "Camry", "Year": 2022, "Mileage": 5000.0, "VIN": "ABCDEFGHIJKLMNOP"}, {"Stock": "38003", "Make": "Honda", "Model": "Accord", "Year": 1989, "Mileage": 150000.0, "VIN": "XXXXXXXXRM121221"}, {"Stock": "P8001", "Make": "Toyota", "Model": "Corolla", "Year": 2013, "Mileage": 120000.0, "VIN": "XXXXXXXXRM125689"}]
+[
+    {
+        "Stock": "20002",
+        "Make": "Toy",
+        "Model": "Car",
+        "Year": 1999,
+        "Mileage": 1400.25,
+        "VIN": "XXXXXXXXX1243564"
+    },
+    {
+        "Stock": "38002",
+        "Make": "Toyota",
+        "Model": "Camry",
+        "Year": 2022,
+        "Mileage": 5000.0,
+        "VIN": "ABCDEFGHIJKLMNOP"
+    },
+    {
+        "Stock": "38003",
+        "Make": "Honda",
+        "Model": "Accord",
+        "Year": 1989,
+        "Mileage": 150000.0,
+        "VIN": "XXXXXXXXRM121221"
+    },
+    {
+        "Stock": "P8001",
+        "Make": "Toyota",
+        "Model": "Corolla",
+        "Year": 2013,
+        "Mileage": 120000.0,
+        "VIN": "XXXXXXXXRM125689"
+    },
+    {
+        "Stock": "40001",
+        "Make": "Ford",
+        "Model": "Fusion",
+        "Year": 2016,
+        "Mileage": 80000.0,
+        "VIN": "XXXXXXXXRM125690"
+    },
+    {
+        "Stock": "40002",
+        "Make": "Chevrolet",
+        "Model": "Cruze",
+        "Year": 2019,
+        "Mileage": 45000.0,
+        "VIN": "XXXXXXXXRM125691"
+    },
+    {
+        "Stock": "40003",
+        "Make": "Toyota",
+        "Model": "Highlander",
+        "Year": 2018,
+        "Mileage": 60000.0,
+        "VIN": "XXXXXXXXRM125692"
+    },
+    {
+        "Stock": "40004",
+        "Make": "Honda",
+        "Model": "Civic",
+        "Year": 2017,
+        "Mileage": 70000.0,
+        "VIN": "XXXXXXXXRM125693"
+    },
+    {
+        "Stock": "40005",
+        "Make": "Nissan",
+        "Model": "Altima",
+        "Year": 2015,
+        "Mileage": 90000.0,
+        "VIN": "XXXXXXXXRM125694"
+    },
+    {
+        "Stock": "40006",
+        "Make": "Toyota",
+        "Model": "RAV4",
+        "Year": 2020,
+        "Mileage": 30000.0,
+        "VIN": "XXXXXXXXRM125695"
+    },
+    {
+        "Stock": "40007",
+        "Make": "Subaru",
+        "Model": "Outback",
+        "Year": 2014,
+        "Mileage": 100000.0,
+        "VIN": "XXXXXXXXRM125696"
+    },
+    {
+        "Stock": "40008",
+        "Make": "Hyundai",
+        "Model": "Elantra",
+        "Year": 2017,
+        "Mileage": 70000.0,
+        "VIN": "XXXXXXXXRM125697"
+    },
+    {
+        "Stock": "40009",
+        "Make": "Ford",
+        "Model": "Escape",
+        "Year": 2019,
+        "Mileage": 45000.0,
+        "VIN": "XXXXXXXXRM125698"
+    },
+    {
+        "Stock": "40010",
+        "Make": "Chevrolet",
+        "Model": "Equinox",
+        "Year": 2018,
+        "Mileage": 60000.0,
+        "VIN": "XXXXXXXXRM125699"
+    },
+    {
+        "Stock": "40011",
+        "Make": "Toyota",
+        "Model": "Sienna",
+        "Year": 2017,
+        "Mileage": 70000.0,
+        "VIN": "XXXXXXXXRM125700"
+    },
+    {
+        "Stock": "40012",
+        "Make": "Honda",
+        "Model": "Pilot",
+        "Year": 2015,
+        "Mileage": 90000.0,
+        "VIN": "XXXXXXXXRM125701"
+    },
+    {
+        "Stock": "40013",
+        "Make": "Nissan",
+        "Model": "Rogue",
+        "Year": 2020,
+        "Mileage": 30000.0,
+        "VIN": "XXXXXXXXRM125702"
+    },
+    {
+        "Stock": "40014",
+        "Make": "Toyota",
+        "Model": "Tacoma",
+        "Year": 2014,
+        "Mileage": 100000.0,
+        "VIN": "XXXXXXXXRM125703"
+    },
+    {
+        "Stock": "40015",
+        "Make": "Subaru",
+        "Model": "Forester",
+        "Year": 2017,
+        "Mileage": 70000.0,
+        "VIN": "XXXXXXXXRM125704"
+    },
+    {
+        "Stock": "40016",
+        "Make": "Hyundai",
+        "Model": "Sonata",
+        "Year": 2016,
+        "Mileage": 80000.0,
+        "VIN": "XXXXXXXXRM125705"
+    },
+    {
+        "Stock": "40017",
+        "Make": "Ford",
+        "Model": "Explorer",
+        "Year": 2019,
+        "Mileage": 45000.0,
+        "VIN": "XXXXXXXXRM125706"
+    },
+    {
+        "Stock": "40018",
+        "Make": "Chevrolet",
+        "Model": "Traverse",
+        "Year": 2018,
+        "Mileage": 60000.0,
+        "VIN": "XXXXXXXXRM125707"
+    },
+    {
+        "Stock": "40019",
+        "Make": "Toyota",
+        "Model": "4Runner",
+        "Year": 2017,
+        "Mileage": 70000.0,
+        "VIN": "XXXXXXXXRM125708"
+    },
+    {
+        "Stock": "40020",
+        "Make": "Honda",
+        "Model": "CR-V",
+        "Year": 2015,
+        "Mileage": 90000.0,
+        "VIN": "XXXXXXXXRM125709"
+    },
+    {
+        "Stock": "40021",
+        "Make": "Nissan",
+        "Model": "Sentra",
+        "Year": 2020,
+        "Mileage": 30000.0,
+        "VIN": "XXXXXXXXRM125710"
+    }
+]

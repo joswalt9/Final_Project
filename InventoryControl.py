@@ -114,7 +114,8 @@ def add_vehicle(inventory):
     status_label.config(text="Vehicle added to inventory.") # Update status label
 
 # Function to display seperate inventory window
-def view_inventory_window(inventory):
+# Function to display inventory with pagination
+def view_inventory_window(inventory, page=1, entries_per_page=15):
     global view_vehicle_image
 
     # Sort inventory by stock number
@@ -123,7 +124,7 @@ def view_inventory_window(inventory):
     # Function to refresh inventory window
     def refresh():
         view_window.destroy()
-        view_inventory_window(inventory)
+        view_inventory_window(inventory, page, entries_per_page)
 
     # Create a new window to display inventory
     view_window = tk.Toplevel(root)
@@ -135,29 +136,56 @@ def view_inventory_window(inventory):
         image_label = tk.Label(view_window, image=view_vehicle_image)
         image_label.pack()
     except tk.TclError:
-        tk.Label(view_window, text="View Inventory").pack() # Display alternate text if view.png fails to load.
+        tk.Label(view_window, text="View Inventory").pack()  # Display alternate text if view.png fails to load.
 
-    # Check if inventory is empty
+    # Calculate start and end indices for the current page
+    start_index = (page - 1) * entries_per_page
+    end_index = min(start_index + entries_per_page, len(inventory))
+
+    # Display inventory entries for the current page
     if not inventory:
         tk.Label(view_window, text="Inventory is empty").pack()
     else:
-        # Display vehicle inventory
-        for index, vehicle in enumerate(inventory, start=1):
+        for index in range(start_index, end_index):
+            vehicle = inventory[index]
             # Create a frame
-            frame = tk.Frame(view_window, bd=1, relief="solid") # Add a border
+            frame = tk.Frame(view_window, bd=1, relief="solid")  # Add a border
             frame.pack(fill="x", padx=2, pady=2)
 
-            #Display Entries
-            vehicle_label = tk.Label(frame, text=f"{vehicle['Stock']}. {vehicle['Year']} {vehicle['Make']} {vehicle['Model']} - Mileage: {vehicle['Mileage']} - VIN: {vehicle['VIN']}")
+            # Display Entries
+            vehicle_label = tk.Label(frame,
+                                     text=f"{vehicle['Stock']}. {vehicle['Year']} {vehicle['Make']} {vehicle['Model']} - Mileage: {vehicle['Mileage']} - VIN: {vehicle['VIN']}")
             vehicle_label.pack(side="left")
 
             # Add delete button to each entry
-            delete_button = tk.Button(frame, text="Delete", command=lambda idx=index-1, window=view_window: delete_vehicle(idx, view_window))
+            delete_button = tk.Button(frame, text="Delete",
+                                      command=lambda idx=index, window=view_window: delete_vehicle(idx, view_window))
             delete_button.pack(side="right")
+
+    # Display pagination controls
+    if len(inventory) > entries_per_page:
+        page_frame = tk.Frame(view_window)
+        page_frame.pack()
+
+        # Previous page button
+        if page > 1:
+            prev_button = tk.Button(page_frame, text="Prev", command=lambda: refresh_page(page - 1))
+            prev_button.pack(side="left")
+
+        # Next page button
+        if end_index < len(inventory):
+            next_button = tk.Button(page_frame, text="Next", command=lambda: refresh_page(page + 1))
+            next_button.pack(side="right")
+
+    # Function to refresh the page with the given page number
+    def refresh_page(new_page):
+        view_window.destroy()
+        view_inventory_window(inventory, new_page, entries_per_page)
 
     # Button to refresh inventory display
     refresh_button = tk.Button(view_window, text="Refresh", command=refresh)
     refresh_button.pack()
+
 
 # Function to display 'Add Vehicle' window
 def add_vehicle_window():
