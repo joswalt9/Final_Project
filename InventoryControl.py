@@ -96,8 +96,8 @@ def add_vehicle(inventory):
         return
     
     #Check if VIN number is 16 characters long
-    if len(vin) != 16:
-        status_label.config(text="VIN must be exactly 16 characters long.") # Update status label
+    if len(vin) != 17:
+        status_label.config(text="VIN must be exactly 1 characters long.") # Update status label
     
     # If checks pass, add vehicle to inventory
     vehicle = {
